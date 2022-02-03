@@ -1,12 +1,9 @@
-FROM node:16-alpine3.11
+FROM node:16-alpine3.11 as nodejs
 
 WORKDIR /
-
 COPY . /
-
 ADD ./package.json /app/package.json
-
-RUN rm -rf node_modules 
+RUN rm -rf package-lock.json
 RUN yarn install 
 
-CMD ["yarn", "start"]
+CMD ["npm", "start"]
