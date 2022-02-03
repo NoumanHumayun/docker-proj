@@ -9,12 +9,6 @@ services:
     container_name: nodejs
     restart: unless-stopped
     env_file: .env
-    # environment:
-    #   - MONGO_USERNAME=$MONGO_USERNAME
-    #   - MONGO_PASSWORD=$MONGO_PASSWORD
-    #   - MONGO_HOSTNAME=db
-    #   - MONGO_PORT=$MONGO_PORT
-    #   - MONGO_DB=$MONGO_DB
     ports:
       - "80:8080"
     volumes:
@@ -22,20 +16,21 @@ services:
       - node_modules:/home/node/app/node_modules
     networks:
       - app-network
-    # command: ./wait-for.sh db:27017 -- /home/node/app/node_modules/.bin/nodemon app.js 
 
-  # db:
-  #   image: mongo:4.1.8-xenial
-  #   container_name: db
-  #   restart: unless-stopped
-  #   env_file: .env
-  #   environment:
-  #     - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
-  #     - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
-  #   volumes:     
-  #     - dbdata:/data/db
-  #   networks:
-  #     - app-network  
+  mysql:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSOWRD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSOWRD
+    volumes:
+      - mysql57:/var/lib/mysql
+    networks:
+      - default
+    restart: unless-stopped
 
 networks:
   app-network:
@@ -44,3 +39,7 @@ networks:
 volumes:
   dbdata:
   node_modules:
+  mysql:
+    driver: "local"
+  mysql57:
+    driver: "local"
