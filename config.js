@@ -3,7 +3,7 @@ dotenv.config();
 
 module.exports = app = {
     secret: process.env.JWT_SECRET,
-    port: parseInt(process.env.PORT) || 2020,
+    port: parseInt(process.env.PORT) || 8080,
     dbName: process.env.DB,
     dbUser: process.env.DB_USER,
     dbPass: process.env.DB_PASS,
