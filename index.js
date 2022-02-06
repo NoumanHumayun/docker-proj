@@ -6,6 +6,7 @@ var app = express();
 var userRoutes = require("./users/users.routes");
 var postRoutes = require("./posts/posts.routes");
 var commentRoutes = require("./comments/comments.routes");
+const config = require("./config");
 
 //app.use(here I can add middlewares like bugsnag, papertrail)
 // parse application/x-www-form-urlencoded
@@ -20,7 +21,7 @@ try {
   // sequelize.sync({ force: true });
   sequelize.authenticate().then(() => {
     console.log("Connection has been established successfully.");
-    app.listen(8080, () => {
+    app.listen(config.port || 8080, () => {
       console.log("Express started on port 8080");
     });
   });
