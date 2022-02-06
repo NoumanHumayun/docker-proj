@@ -20,7 +20,7 @@ on:
 name: Build and Deploy to Cloud Run
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT }}
-  SERVICE: CSBC1040-Project
+  SERVICE: csbc1040-project
   REGION: us-central1
 
 jobs:
