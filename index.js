@@ -20,8 +20,8 @@ try {
   // sequelize.sync({ force: true });
   sequelize.authenticate().then(() => {
     console.log("Connection has been established successfully.");
-    app.listen(2020, () => {
-      console.log("Express started on port 2020");
+    app.listen(8080, () => {
+      console.log("Express started on port 8080");
     });
   });
 } catch (error) {
