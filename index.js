@@ -18,7 +18,7 @@ app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 app.use("/", commentRoutes);
 try {
-  // sequelize.sync({ force: true });
+  sequelize.sync({ force: true });
   sequelize.authenticate().then(() => {
     console.log("Connection has been established successfully.");
     app.listen(config.port || 8080, () => {
