@@ -10,7 +10,7 @@ function auth(req, res, next) {
   }
   try {
     token = token.substring(7, token.length);
-    const decoded = jwt.verify(token, config?.secret);
+    const decoded = jwt.verify(token, config.secret);
 
     res.locals.user = decoded.email;
     next();
@@ -29,7 +29,7 @@ function isSuperAdmin(req, res, next) {
   }
   try {
     token = token.substring(7, token.length);
-    const decoded = jwt.verify(token, config?.secret);
+    const decoded = jwt.verify(token, config.secret);
 
     if (decoded.id !== 3) throw new Error("Not a SuperAdmin!");
     next();
@@ -49,7 +49,7 @@ function isSelf(req, res, next) {
   try {
     token = token.substring(7, token.length);
     const id = parseInt(req.params.id);
-    const decoded = jwt.verify(token, config?.secret);
+    const decoded = jwt.verify(token, config.secret);
 
     if (decoded.id !== id) throw new Error("Not accessing own record!");
     next();
@@ -68,7 +68,7 @@ function getUser(req, res) {
   }
   try {
     token = token.substring(7, token.length);
-    const decoded = jwt.verify(token, config?.secret);
+    const decoded = jwt.verify(token, config.secret);
     return decoded.id;
     
   } catch (err) {
